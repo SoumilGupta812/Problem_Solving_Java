@@ -37,7 +37,7 @@ public class reverseLinkedList {
         reverse = newNode;
         reverseRecursion(reverse, temp.next);
     }
-    public static ListNode reverseRecursion2(.ListNode reverse, .ListNode head) {
+    public static ListNode reverseRecursion2(ListNode reverse, ListNode head) {
         if (head == null) {
 
             return reverse;
@@ -48,7 +48,7 @@ public class reverseLinkedList {
         reverse = newNode;
         return reverseRecursion2(reverse, temp.next);
     }
-    public static ListNode reverseRecursion3(.ListNode head) {
+    public static ListNode reverseRecursion3(ListNode head) {
         if (head == null) {
             return null;
         }
