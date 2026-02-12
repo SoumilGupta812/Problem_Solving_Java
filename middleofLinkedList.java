@@ -15,12 +15,13 @@ public class middleofLinkedList {
             temp=temp.next;
         }
 
-        System.out.print("Original Linked List:");
-        listPrint(head);
-        ListNode middle=middleNode(head);
-        listPrint(middle);
-        System.out.print("Original Linked List:");
-        listPrint(head);
+//        System.out.print("Original Linked List:");
+//        listPrint(head);
+//        ListNode middle=middleNode(head);
+//        listPrint(middle);
+//        System.out.print("Original Linked List:");
+//        listPrint(head);
+        getMaximumGenerated(11);
 
     }
     public static void listPrint(ListNode head){
@@ -49,6 +50,25 @@ public class middleofLinkedList {
 
 
     }
+    public static int getMaximumGenerated(int n) {
+        int[] nums=new int[n+1];
+        nums[0]=0;
+        nums[1]=1;
+        for(int i=0;i<=n;i++){
+            if(!(2*i<=n)) break;
+            nums[2 * i] = nums[i];
+            if(!(2*i+1<=n)) break;
+            nums[2 * i + 1] = nums[i] + nums[i + 1];
+        }
+
+        int max=0;
+        for(int i=0;i<=n;i++){
+            if(max<nums[i]) max=nums[i];
+        }
+        return max;
+
+    }
+
 
     static class ListNode {
         int val;
