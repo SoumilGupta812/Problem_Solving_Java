@@ -17,11 +17,11 @@ public class middleofLinkedList {
 
 //        System.out.print("Original Linked List:");
 //        listPrint(head);
-//        ListNode middle=sortList(head);
+//        ListNode middle=swapNodes(head,2);
 //        listPrint(middle);
 //        System.out.print("Original Linked List:");
 //        listPrint(head);
-        getMaximumGenerated(11);
+//        getMaximumGenerated(11);
 
     }
     public static void listPrint(ListNode head){
@@ -36,6 +36,7 @@ public class middleofLinkedList {
         System.out.print("]");
         System.out.println();
     }
+
     public static ListNode middleNode(ListNode head) {
         if(head.next==null) return head;
         if(head.next.next==null) return head.next;
