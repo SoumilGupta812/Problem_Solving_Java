@@ -17,7 +17,7 @@ public class middleofLinkedList {
 
 //        System.out.print("Original Linked List:");
 //        listPrint(head);
-//        ListNode middle=middleNode(head);
+//        ListNode middle=sortList(head);
 //        listPrint(middle);
 //        System.out.print("Original Linked List:");
 //        listPrint(head);
@@ -36,7 +36,6 @@ public class middleofLinkedList {
         System.out.print("]");
         System.out.println();
     }
-
     public static ListNode middleNode(ListNode head) {
         if(head.next==null) return head;
         if(head.next.next==null) return head.next;
