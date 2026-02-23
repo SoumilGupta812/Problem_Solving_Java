@@ -2,7 +2,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class largestRectangle {
-    public int largestRectangleArea(int[] heights) {
+    public static int largestRectangleArea(int[] heights) {
         int maxArea=0;
         Deque<Integer> stack =new ArrayDeque<>();
         int n =heights.length;
@@ -16,12 +16,17 @@ public class largestRectangle {
                     width=i;
                 }
                 else {
-                    width=i-stack.peek()-1;
+                    width=i-stack.peek();
                 }
                 maxArea=Math.max(maxArea,width*height);
             }
             stack.push(i);
         }
         return maxArea;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(largestRectangleArea(new int[] {2,1,5,6,2}));
+
     }
 }
