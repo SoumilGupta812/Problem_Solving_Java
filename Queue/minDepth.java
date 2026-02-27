@@ -31,6 +31,22 @@ public class minDepth {
             }
         }
         return depth;
+    }
+    public List<Integer> rightSideView(TreeNode root) {
+        if(root == null) return new LinkedList<>();
+        List<Integer> ans=new LinkedList<>();
+        Queue<TreeNode> q=new ArrayDeque<>();
+        q.offer(root);
+        while(!q.isEmpty()){
+            int size=q.size();
+            for(int i=0;i<size;i++){
+                TreeNode curr=q.poll();
+                if(i==size-1) ans.add(curr.val);
 
+                if(curr.left!= null) q.offer(curr.left);
+                if(curr.right!= null) q.offer(curr.right);
+            }
+        }
+        return ans;
     }
 }
