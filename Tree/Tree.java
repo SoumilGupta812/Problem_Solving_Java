@@ -62,4 +62,52 @@ public class Tree {
         head.right = deserializeHelper(data, q);
         return head;
     }
+    public List<Double> averageOfLevels(TreeNode root) {
+        Queue<TreeNode> q=new ArrayDeque<>();
+        List<Double> ans=new ArrayList<>();
+        q.offer(root);
+        while(!q.isEmpty()){
+            int size=q.size();
+            long sum=0;
+            for(int i=0;i<size;i++){
+                TreeNode curr=q.poll();
+                sum+=curr.val;
+                if(curr.left!=null)
+                    q.offer(curr.left);
+                if(curr.right!=null)
+                    q.offer(curr.right);
+            }
+            double avg=(double)sum/size;
+            ans.add(avg);
+        }
+        return ans;
+    }
+    public static List<String> res;
+    public static List<String> binaryTreePaths(TreeNode root) {
+        if(root==null) return null;
+        res=new ArrayList<>();
+        helper(root,new ArrayList<>());
+        return res;
+    }
+    public static void helper(TreeNode root,List<Integer> list){
+        if(root==null) return;
+        if(root.left==null && root.right==null){
+            list.add(root.val);
+            addStr(list);
+            list.remove(list.size()-1);
+            return;
+        }
+        list.add(root.val);
+        helper(root.left,list);
+        helper(root.right,list);
+        list.remove(list.size()-1);
+    }
+    public static void addStr(List<Integer> list){
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<list.size();i++){
+            sb.append(list.get(i));
+            if(i!=list.size()-1) sb.append("->");
+        }
+        res.add(new String(sb));
+    }
 }
