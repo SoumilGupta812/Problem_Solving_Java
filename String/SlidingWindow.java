@@ -30,4 +30,22 @@ public class SlidingWindow {
         }
         return minLength==Integer.MAX_VALUE?"":s.substring(minLeft,minLeft+minLength);
     }
+    public int characterReplacement(String s, int k) {
+        int result=0;
+        int left=0;
+        int[] freq=new int[26];
+        int maxFreq=0;
+        for(int right=0;right<s.length();right++){
+            char c=s.charAt(right);
+            freq[c-'A']++;
+            maxFreq = Math.max(maxFreq, freq[c - 'A']);
+            if((right-left+1-maxFreq)>k){
+                char l=s.charAt(left);
+                freq[l-'A']--;
+                left++;
+            }
+            result=right-left+1;
+        }
+        return result;
+    }
 }
