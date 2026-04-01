@@ -64,5 +64,47 @@ public class SlidingWindow {
         }
         return result;
     }
+    public List<Integer> findSubstring(String s, String[] words) {
+        HashMap<String, Integer> wordmap = new HashMap<>();
+        HashMap<String, Integer> window = new HashMap<>();
+        List<Integer> res = new ArrayList<>();
+        for (String word : words)
+            wordmap.put(word, wordmap.getOrDefault(word, 0) + 1);
+        int left = 0, have = 0, need = wordmap.size();
+        int wordLen = words[0].length();
+        for (int i = 0; i < wordLen; i++) {
+            left = i;
+            have = 0;
+            window = new HashMap<>();
+            for (int right = i; right + wordLen <= s.length(); right += wordLen) {
+                String cur = s.substring(right, right + wordLen);
+                if (!wordmap.containsKey(cur)) {
+                    window.clear();
+                    have = 0;
+                    left = right + wordLen;
+                } else {
+                    window.put(cur, window.getOrDefault(cur, 0) + 1);
+                    if (wordmap.get(cur).equals(window.get(cur)))
+                        have++;
+                    while (window.get(cur) > wordmap.get(cur)) {
+                        String leftWord = s.substring(left, left + wordLen);
+                        if (wordmap.get(leftWord).equals(window.get(leftWord)))
+                            have--;
+                        window.put(leftWord, window.get(leftWord) - 1);
+                        left += wordLen;
+                    }
+                    if (have == need) {
+                        res.add(left);
+                        String leftWord = s.substring(left, left + wordLen);
+                        if (wordmap.get(leftWord).equals(window.get(leftWord)))
+                            have--;
+                        window.put(leftWord, window.get(leftWord) - 1);
+                        left += wordLen;
+                    }
+                }
+            }
+        }
+        return res;
+    }
 
 }
